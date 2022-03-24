@@ -1,6 +1,7 @@
 const jwt = require('jwt-simple');
 const User = require('../models/user');
-const keys = require('../config/dev');
+// const keys = require('../config/dev');
+const keys = require('../config/keys');
 
 function tokenForUser(user) {
   return jwt.encode({ sub: user.id,
@@ -17,6 +18,7 @@ exports.signin = function(req, res, next) {
 };
 
 exports.currentUser = function(req, res) {
+  
   const user = {
     email: req.user.email,
     token: tokenForUser(req.user),
